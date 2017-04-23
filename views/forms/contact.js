@@ -25,14 +25,43 @@ define(function() {
                         view: "text",
                         name: "contact",
                         label: "联系人",
-                        id: "contact_contact",
-                        options: ["Shipping A", "Shipping B", "Shipping C", "Shipping D", "Shipping E", "Shipping F", "Shipping G"]
+                        id: "contact-contact",
+                        width: 350
+                    },
+                    {
+                        view: "text",
+                        name: "phone",
+                        label: "联系电话",
+                        id: "contact-phone",
+                        width: 350
+                    },
+                    {
+                        view: "text",
+                        name: "fhdz",
+                        label: "发货地址",
+                        id: "contact-fhdz",
+                        width: 350
                     },
                     {
                         view: "datepicker",
-                        label: "contact Date",
+                        name: "htzq",
+                        label: "合同账期",
                         value: new Date(),
                         format: "%d  %M %Y"
+                    },
+                    {
+                        view: "textarea",
+                        name: "memo",
+                        label: "备注",
+                        id: "contact-memo",
+                        width: 350
+                    },
+                    {
+                        view: "text",
+                        name: "rate",
+                        label: "信誉等级",
+                        id: "contact-rate",
+                        width: 350
                     },
                     {
                         margin: 10,
@@ -44,8 +73,10 @@ define(function() {
                                 align: "center",
                                 width: 120,
                                 click: function() {
-                                    webix.ajax().post("/api/contact",JSON.stringify($$("contact-form").getValues()));
-                                    //webix.$$("contact-win").close();
+                                    webix.ajax().post("/api/contact",JSON.stringify($$("contact-form").getValues()));                                    
+                                    console.log('refresh insert');
+                                    webix.$$("DataTable").load("/api/contact");
+                                    webix.$$("contact-win").close();
                                 }
                             },
                             {

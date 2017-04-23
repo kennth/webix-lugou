@@ -11,53 +11,45 @@ var mainView = {};
 
 var layout = {
 	type: "space",
-	rows:[
-		{
-				type: "wide",
-				cols:[
-					search,
+	rows:[{
+		type: "wide",
+		cols:[
+			search,
+			{
+				gravity: 2.2,
+				rows:[
+					{view: "tabbar", multiview: true,optionWidth: 130,
+						options:[
+							{id: "mainView", value: "Main"},
+							{id: "imagesView", value: "Images"},
+							{id: "metaView", value: "Meta"}
+						]
+					},
 					{
-						gravity: 2.2,
-						rows:[
-							{view: "tabbar", multiview: true,optionWidth: 130,
-								options:[
-									{id: "mainView", value: "Main"},
-									{id: "imagesView", value: "Images"},
-									{id: "metaView", value: "Meta"}
-								]
-							},
-							{
-								cells:[
-									editor,
-									upload,
-									meta
-								]
-							},
-							{
+						cells:[
+							editor,
+							upload,
+							meta
+						]
+					},
+					{
+						view: "form",
+						css: "highlighted_header header6",
+						paddingX:5,
+						paddingY:5,
+						height:40,
 
-								view: "form",
-								css: "highlighted_header header6",
-								paddingX:5,
-								paddingY:5,
-								height:40,
-
-								cols:[
-									{ view: "button", type: "form", icon: "plus", label: "Save", width: 90},
-									{ view: "button", css: "button2", icon: "angle-left", label: "Reset", width: 90},
-
-									{},
-									{ view: "button", css: "button0", icon: "times", label: "Delete", width: 90}
-								]
-
-							}
+						cols:[
+							{ view: "button", type: "form", icon: "plus", label: "Save", width: 90},
+							{ view: "button", css: "button2", icon: "angle-left", label: "Reset", width: 90},
+							{},
+							{ view: "button", css: "button0", icon: "times", label: "Delete", width: 90}
 						]
 
-
-
+					}
+				]
 			}
 		]}
-
-
 	]
 
 };
@@ -66,7 +58,6 @@ var layout = {
 return {
 	$ui:layout,
 	$oninit:function(){
-
 		$$("mainView").bind($$("list"));
 	}
 };
