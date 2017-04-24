@@ -16,6 +16,13 @@ define(function() {
                 id: "contact-form",
                 elements: [{
                         view: "text",
+                        name: "id",
+                        label: "id",
+                        id: "contact-id",
+                        hidden:true,
+                        width: 350
+                    },{
+                        view: "text",
                         name: "company",
                         label: "公司名称",
                         id: "contact-company",
@@ -68,20 +75,23 @@ define(function() {
                         cols: [{},
                             {
                                 view: "button",
-                                label: "Add",
+                                label: "保存",
                                 type: "form",
                                 align: "center",
                                 width: 120,
                                 click: function() {
-                                    webix.ajax().post("/api/contact",JSON.stringify($$("contact-form").getValues()));                                    
-                                    console.log('refresh insert');
+                                	if($$("contact-form").getValues().id == ''){
+                                		webix.ajax().post("/api/contact",JSON.stringify($$("contact-form").getValues()));
+                                	}else{
+                                		webix.ajax().put("/api/contact",JSON.stringify($$("contact-form").getValues()));
+                                	}                                    
                                     webix.$$("DataTable").load("/api/contact");
                                     webix.$$("contact-win").close();
                                 }
                             },
                             {
                                 view: "button",
-                                label: "Cancel",
+                                label: "取消",
                                 align: "center",
                                 width: 120,
                                 click: function() {

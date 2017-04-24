@@ -3,11 +3,17 @@ define([
 ], function(contactform ){
 
 	var controls = [
-		{ view: "button", type: "iconButton", icon: "plus", label: "添加", width: 130, click: function(){
+		{ view: "button", type: "iconButton", icon: "plus", label: "添加", width: 130, click: function(){			
 			this.$scope.ui(contactform.$ui).show();
 		}},
     { view: "button", type: "iconButton", icon: "edit", label: "编辑", width: 130, click: function(){
-      //todo
+      		this.$scope.ui(contactform.$ui).hide();
+			$$("contact-form").bind($$("DataTable"));
+			if ($$("DataTable").getSelectedId() == undefined)
+				return;			
+			var selectd=$$("DataTable").getSelectedId().row;
+			$$("DataTable").select(selectd);
+			this.$scope.ui(contactform.$ui).show();
 		}},
 		{ view: "button", type: "iconButton", icon: "refresh", label: "刷新", width: 130, click: function(){
 			console.log('refresh00');
@@ -48,7 +54,7 @@ define([
 				],
 				on: {
 					onAfterLoad: function(){
-						//this.select(1);
+						//this.select(1);						
 					}
 				},
 				pager:"pagerA",
