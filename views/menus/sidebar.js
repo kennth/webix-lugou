@@ -48,8 +48,8 @@ define(function(){
 							{ id: "calendar", value: "My Calendar", icon: "calendar", details: "calendar example" },
 							{ id: "files", value: "File Manager", icon: "folder-open-o", details: "file manager example" }
 						]},
-						{id: "custom", value:"Manage", open:1, data:[
-							{ id: "contact", value: "Contact", icon: "users", details: "test custom" }
+						{id: "custom", value:"管理", open:1, data:[
+							{ id: "contact", value: "联系人", icon: "users", details: "联系人" }
 						]}
 					]
 				}

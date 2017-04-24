@@ -81,12 +81,14 @@ define(function() {
                                 width: 120,
                                 click: function() {
                                 	if($$("contact-form").getValues().id == ''){
-                                		webix.ajax().post("/api/contact",JSON.stringify($$("contact-form").getValues()));
+                                		var promis = webix.ajax().post("/api/contact",JSON.stringify($$("contact-form").getValues()));
                                 	}else{
-                                		webix.ajax().put("/api/contact",JSON.stringify($$("contact-form").getValues()));
-                                	}                                    
-                                    webix.$$("DataTable").load("/api/contact");
-                                    webix.$$("contact-win").close();
+                                		var promis = webix.ajax().put("/api/contact",JSON.stringify($$("contact-form").getValues()));
+                                	}                
+                                	promis.then(function success(realdata){
+                                    	webix.$$("DataTable").load("/api/contact");                                    	
+                                   })
+                                	webix.$$("contact-win").close();
                                 }
                             },
                             {
